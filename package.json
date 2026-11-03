@@ -1,0 +1,30 @@
+{
+  "name": "hollow-grove-ai-defense",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Top-down tower defense where a PPO agent learns to survive the Hollow Grove.",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node sim_test.mjs && node logic_review_checks.mjs && node rl_space_test.mjs",
+    "train:probe": "node train_probe.mjs 160 42",
+    "test:ui": "node ui_smoke.mjs",
+    "screenshot": "node shot.mjs"
+  },
+  "devDependencies": {
+    "puppeteer": "25.16.0"
+  },
+  "license": "MIT",
+  "author": "abanerjee84",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abanerjee84/HOLLOW-GRAVE.git"
+  },
+  "bugs": {
+    "url": "https://github.com/abanerjee84/HOLLOW-GRAVE/issues"
+  },
+  "homepage": "https://github.com/abanerjee84/HOLLOW-GRAVE#readme",
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0f0c" />
+  <title>Hollow Grove — Neural Defense</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23172119'/%3E%3Cpath d='M16 4 27 10v12l-11 6-11-6V10Z' fill='none' stroke='%23d8ab63' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Barlow+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./src/style.css" />
+  <script type="importmap">
+    { "imports": { "three": "./vendor/three.module.js" } }
+  </script>
+</head>
+<body>
+  <canvas id="game"></canvas>
+
+  <div id="grade"></div>
+  <div id="vignette"></div>
+  <div id="hit-flash"></div>
+  <div id="grain"></div>
+
+  <div id="hud">
+    <header class="hud-top">
+      <div class="brand">
+        <svg class="sigil" viewBox="0 0 44 44" aria-hidden="true">
+          <path d="M22 3 L38 12 L38 32 L22 41 L6 32 L6 12 Z" fill="none" stroke="currentColor" stroke-width="1.1"/>
+          <path d="M22 10 L31 16 L31 28 L22 34 L13 28 L13 16 Z" fill="none" stroke="currentColor" stroke-width=".8" opacity=".6"/>
+          <circle cx="22" cy="22" r="4.2" fill="none" stroke="currentColor" stroke-width="1"/>
+          <path d="M22 17.8 L22 26.2 M17.8 22 L26.2 22" stroke="currentColor" stroke-width=".7"/>
+        </svg>
+        <div class="brand-text">
+          <h1>Hollow Grove</h1>
+          <p>Neural Defense Protocol &nbsp;·&nbsp; PPO&nbsp;/&nbsp;v1.0</p>
+        </div>
+      </div>
+
+      <div class="top-stats">
+        <div class="stat">
+          <span class="stat-label">Wave</span>
+          <span class="stat-value" id="hud-wave">01</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Waves Held</span>
+          <span class="stat-value soul" id="hud-held">0</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Scrap</span>
+          <span class="stat-value accent" id="hud-scrap">40</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Souls</span>
+          <span class="stat-value soul" id="hud-souls">0/9</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Magazine</span>
+          <span class="stat-value accent" id="hud-ammo">∞</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Gear</span>
+          <span class="stat-value gear" id="hud-gear">2 bombs · 1 kit</span>
+        </div>
+        <div class="stat house-stat">
+          <span class="stat-label">House Integrity</span>
+          <div class="hp-track"><div class="hp-fill" id="hud-house-hp"></div></div>
+        </div>
+      </div>
+    </header>
+
+    <aside id="ai-panel" class="panel">
+      <div class="panel-head">
+        <span class="panel-kicker">Cognition Core</span>
+        <span class="live-dot" id="ai-live"></span>
+      </div>
+      <div class="panel-title">THE LEARNING FARMER</div>
+
+      <div class="core-row">
+        <div class="status-plate" id="ai-status">STANDBY</div>
+        <div class="core-sub" id="ai-sub">policy untrained</div>
+      </div>
+
+      <div class="learning-test" aria-live="polite">
+        <div class="test-heading"><span>FIELD TEST · 4 FIXED DEFENSES</span><b id="learning-trend">Measuring baseline</b></div>
+        <div class="test-comparison">
+          <div><span>Started at</span><strong id="eval-baseline">—</strong><small>kills / defense</small></div>
+          <span class="test-arrow" aria-hidden="true">→</span>
+          <div><span>Current policy</span><strong id="eval-current">—</strong><small>kills / defense</small></div>
+        </div>
+        <p id="eval-note">Comparing the farmer against the same four unseen hordes.</p>
+      </div>
+
+      <div class="metric-grid">
+        <div class="metric"><span>Waves held</span><b id="m-waves">0</b></div>
+        <div class="metric"><span>Best wave held</span><b id="m-best-wave">0</b></div>
+        <div class="metric"><span>Waves / episode</span><b id="m-run-waves">—</b></div>
+        <div class="metric"><span>Hold rate</span><b id="m-hold-rate">—</b></div>
+        <div class="metric"><span>Total steps</span><b id="m-steps">0</b></div>
+        <div class="metric"><span>Reward / episode</span><b id="m-reward">—</b></div>
+        <div class="metric"><span>Kills / episode</span><b id="m-kills">—</b></div>
+      </div>
+
+      <div class="reward-chart">
+        <div class="chart-label"><span>FIELD TEST · KILLS / DEFENSE</span><span id="m-curve-label">—</span></div>
+        <canvas id="reward-canvas" width="560" height="144" role="img" aria-label="Policy evaluation kills per defense over training updates"></canvas>
+        <div class="chart-key"><span>● Current policy</span><span>┄ Starting policy</span></div>
+      </div>
+
+      <details class="training-details"><summary>Training details</summary><div class="metric-grid">
+        <div class="metric"><span>Policy loss</span><b id="m-ploss">—</b></div>
+        <div class="metric"><span>Value loss</span><b id="m-vloss">—</b></div>
+        <div class="metric"><span>Entropy</span><b id="m-entropy">—</b></div>
+        <div class="metric"><span>Rollout</span><b>14 × 96 steps</b></div>
+        <div class="metric"><span>State values</span><b id="m-observation">—</b></div>
+        <div class="metric"><span>Action combinations</span><b id="m-actions">—</b></div>
+      </div></details>
+
+      <div class="train-controls">
+        <button id="btn-train" class="btn btn-primary" type="button">
+          <span class="btn-glyph">◈</span><span>Train Core</span>
+        </button>
+        <button id="btn-pause" class="btn" type="button" disabled>
+          <span class="btn-glyph">Ⅱ</span><span>Pause</span>
+        </button>
+      </div>
+      <div class="train-note">
+        <span id="train-note">Training runs headless in a web worker.</span>
+        <button id="btn-reset-core" class="link-btn" type="button">WIPE CORE</button>
+      </div>
+    </aside>
+
+    <section class="panel agent-panel" id="agent-panel">
+      <div class="panel-head"><span class="panel-kicker">The Farmer</span><span class="agent-id">LIVE POLICY</span></div>
+      <div class="agent-main">
+        <div class="agent-portrait" id="agent-portrait">
+          <svg viewBox="0 0 48 48"><path d="M24 8a7 7 0 1 1 0 14 7 7 0 0 1 0-14ZM11 41c0-8 5.8-13 13-13s13 5 13 13" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        </div>
+        <div class="agent-copy">
+          <h2>MARA VOSS</h2>
+          <p id="agent-mode">AUTONOMOUS · EVALUATING</p>
+          <div class="mini-hp"><div id="agent-hp"></div></div>
+          <div class="agent-tags"><span id="agent-weapon">SIDEARM · ∞</span><span id="agent-action">idle</span></div>
+          <div class="agent-tags perk-row" id="agent-perks"><span class="perk-tag dim">no perks yet</span></div>
+        </div>
+      </div>
+      <div class="policy-intent"><div><span>POLICY CHOICE</span><b id="policy-choice">Exploring</b></div><div class="intent-track"><i id="policy-confidence"></i></div><p id="policy-note">Decisions sampled every 0.2 seconds. Learning by experience.</p></div>
+    </section>
+
+    <footer class="hud-bottom">
+      <div class="mode-switcher">
+        <button class="mode-btn is-active" data-mode="watch" type="button"><kbd>1</kbd> Watch AI</button>
+        <button class="mode-btn" data-mode="play" type="button"><kbd>2</kbd> Take Control</button>
+        <button class="mode-btn" data-mode="observe" type="button"><kbd>3</kbd> Spectate</button>
+        <button class="mode-btn learning-toggle" id="btn-learning" type="button" aria-expanded="false" aria-controls="ai-panel">Learning</button>
+      </div>
+      <div class="bottom-hint" id="hint">
+        <span class="hint-key">WASD</span> move &nbsp; <span class="hint-key">MOUSE</span> aim &nbsp; <span class="hint-key">LMB</span> fire &nbsp; <span class="hint-key">RMB</span> cycle &nbsp; <span class="hint-key">Z</span> reload &nbsp; <span class="hint-key">E</span> turret &nbsp; <span class="hint-key">Q</span> firebomb &nbsp; <span class="hint-key">V</span> medkit &nbsp; <span class="hint-key">SPACE</span> dash
+      </div>
+      <div class="view-controls"><button class="sound-btn" id="btn-follow" type="button" aria-pressed="false">FOLLOW FARMER</button><button class="sound-btn" id="btn-sound" type="button" aria-label="Toggle sound">SOUND: OFF</button></div>
+    </footer>
+
+    <div id="mode-banner" class="mode-banner">
+      <span id="banner-kicker">SIMULATION</span>
+      <b id="banner-text">OBSERVATION MODE</b>
+    </div>
+
+    <div id="toast"></div>
+  </div>
+
+  <div id="result-screen" hidden>
+    <div class="result-panel">
+      <div class="result-crest">
+        <svg viewBox="0 0 60 60"><path d="M30 4 L52 16 L52 44 L30 56 L8 44 L8 16 Z" fill="none" stroke="currentColor" stroke-width="1"/><path d="M30 13 L29 44 M16 25 L44 25" stroke="currentColor" stroke-width=".8" opacity=".6"/><circle cx="30" cy="25" r="3.5" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+      </div>
+      <span class="result-kicker" id="result-kicker">SIMULATION TERMINATED</span>
+      <h2 id="result-title">THE GROVE FELL</h2>
+      <p id="result-sub">The dead found a way through.</p>
+      <div class="result-stats">
+        <div><span>Waves Held</span><b id="result-wave">0</b></div>
+        <div><span>Souls Slain</span><b id="result-kills">0</b></div>
+        <div><span>Time survived</span><b id="result-time">0s</b></div>
+        <div><span>Scrap</span><b id="result-scrap">0</b></div>
+      </div>
+      <button class="btn btn-primary result-btn" id="btn-again" type="button"><span class="btn-glyph">◈</span><span>Defend Again</span></button>
+      <p class="result-hint">auto-restarting…</p>
+    </div>
+  </div>
+
+  <div id="loader">
+    <div class="loader-inner">
+      <div class="loader-ring">
+        <svg viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="55" fill="none" stroke="rgba(216,171,99,.12)" stroke-width="1"/>
+          <circle class="ring-arc" cx="60" cy="60" r="55" fill="none" stroke="#d8ab63" stroke-width="1.2" stroke-dasharray="70 275"/>
+          <circle cx="60" cy="60" r="44" fill="none" stroke="rgba(216,171,99,.22)" stroke-width=".6"/>
+          <path d="M60 28 L86 74 L34 74 Z" fill="none" stroke="rgba(216,171,99,.5)" stroke-width="1"/>
+          <circle cx="60" cy="60" r="5" fill="none" stroke="rgba(216,171,99,.7)" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="loader-title">HOLLOW GROVE</div>
+      <div class="loader-sub" id="loader-sub">RAISING THE GROVE…</div>
+    </div>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

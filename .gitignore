@@ -1,0 +1,17 @@
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+artifacts/
+/baseline.png
+/upgraded.png
+/shot.png
+/ui-*.png
+/ui_smoke_report.json
+__pycache__/
+*.pyc

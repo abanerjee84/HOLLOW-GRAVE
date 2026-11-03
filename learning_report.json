@@ -1,0 +1,465 @@
+{
+  "seed": 42,
+  "baseline": {
+    "kills": 5.5,
+    "waves": 0,
+    "seconds": 43.31249999999967,
+    "reward": -65.32874324324322,
+    "runs": [
+      {
+        "seed": 104729,
+        "kills": 2,
+        "waves": 0,
+        "seconds": 33.45000000000024,
+        "reward": -88.6253920920921
+      },
+      {
+        "seed": 130363,
+        "kills": 8,
+        "waves": 0,
+        "seconds": 62.09999999999861,
+        "reward": -49.60897237237228
+      },
+      {
+        "seed": 155921,
+        "kills": 5,
+        "waves": 0,
+        "seconds": 38.29999999999996,
+        "reward": -68.35256896896898
+      },
+      {
+        "seed": 196613,
+        "kills": 7,
+        "waves": 0,
+        "seconds": 39.3999999999999,
+        "reward": -54.72803953953956
+      }
+    ]
+  },
+  "history": [
+    {
+      "iteration": 20,
+      "totalSteps": 26880,
+      "wavesCleared": 23,
+      "wavesAttempted": 125,
+      "bestWave": 3,
+      "holdRate": 0.184,
+      "meanReward": -19.1431931068569,
+      "rewardPerWave": -32.86527741324659,
+      "meanKills": 10.45,
+      "meanEpisodeWaves": 0.4,
+      "bestEpisodeWaves": 3,
+      "truncatedShare": 0,
+      "entropy": 3.8688787394539013,
+      "policyLoss": -0.003698539403691824,
+      "valueLoss": 41.77372482351741,
+      "evaluation": {
+        "kills": 11.25,
+        "waves": 0.5,
+        "seconds": 54.262499999999065,
+        "reward": -15.467149624624502,
+        "runs": [
+          {
+            "seed": 104729,
+            "kills": 4,
+            "waves": 0,
+            "seconds": 35.55000000000012,
+            "reward": -76.57912492492491
+          },
+          {
+            "seed": 130363,
+            "kills": 18,
+            "waves": 1,
+            "seconds": 68.64999999999824,
+            "reward": 42.8216921921924
+          },
+          {
+            "seed": 155921,
+            "kills": 19,
+            "waves": 1,
+            "seconds": 77.69999999999773,
+            "reward": 45.31091851851881
+          },
+          {
+            "seed": 196613,
+            "kills": 4,
+            "waves": 0,
+            "seconds": 35.15000000000014,
+            "reward": -73.42208428428431
+          }
+        ]
+      }
+    },
+    {
+      "iteration": 40,
+      "totalSteps": 53760,
+      "wavesCleared": 109,
+      "wavesAttempted": 272,
+      "bestWave": 6,
+      "holdRate": 0.4007352941176471,
+      "meanReward": 140.2987384922425,
+      "rewardPerWave": 34.88184359668007,
+      "meanKills": 26.625,
+      "meanEpisodeWaves": 1.65,
+      "bestEpisodeWaves": 6,
+      "truncatedShare": 0,
+      "entropy": 3.779364133372596,
+      "policyLoss": -0.001735367531018067,
+      "valueLoss": 33.171112354610905,
+      "evaluation": {
+        "kills": 33.5,
+        "waves": 2.25,
+        "seconds": 116.73750000000061,
+        "reward": 218.67114842342363,
+        "runs": [
+          {
+            "seed": 104729,
+            "kills": 26,
+            "waves": 2,
+            "seconds": 111.6999999999958,
+            "reward": 87.43623053053068
+          },
+          {
+            "seed": 130363,
+            "kills": 30,
+            "waves": 2,
+            "seconds": 117.44999999999547,
+            "reward": 167.38737557557502
+          },
+          {
+            "seed": 155921,
+            "kills": 6,
+            "waves": 0,
+            "seconds": 38.19999999999997,
+            "reward": -61.73776046046041
+          },
+          {
+            "seed": 196613,
+            "kills": 72,
+            "waves": 5,
+            "seconds": 199.60000000001114,
+            "reward": 681.5987480480492
+          }
+        ]
+      }
+    },
+    {
+      "iteration": 60,
+      "totalSteps": 80640,
+      "wavesCleared": 180,
+      "wavesAttempted": 397,
+      "bestWave": 6,
+      "holdRate": 0.4534005037783375,
+      "meanReward": 109.18548303053042,
+      "rewardPerWave": 41.1316880706748,
+      "meanKills": 23.925,
+      "meanEpisodeWaves": 1.475,
+      "bestEpisodeWaves": 6,
+      "truncatedShare": 0,
+      "entropy": 3.6787605711286866,
+      "policyLoss": -0.004206777037988609,
+      "valueLoss": 25.00903244246575,
+      "evaluation": {
+        "kills": 52.75,
+        "waves": 3.5,
+        "seconds": 156.30000000000513,
+        "reward": 419.32217705205164,
+        "runs": [
+          {
+            "seed": 104729,
+            "kills": 99,
+            "waves": 6,
+            "seconds": 254.20000000002355,
+            "reward": 967.6185689689696
+          },
+          {
+            "seed": 130363,
+            "kills": 59,
+            "waves": 4,
+            "seconds": 168.95000000000417,
+            "reward": 434.051859259258
+          },
+          {
+            "seed": 155921,
+            "kills": 27,
+            "waves": 2,
+            "seconds": 94.94999999999675,
+            "reward": 142.2332606606602
+          },
+          {
+            "seed": 196613,
+            "kills": 26,
+            "waves": 2,
+            "seconds": 107.09999999999606,
+            "reward": 133.3850193193189
+          }
+        ]
+      }
+    },
+    {
+      "iteration": 80,
+      "totalSteps": 107520,
+      "wavesCleared": 294,
+      "wavesAttempted": 547,
+      "bestWave": 7,
+      "holdRate": 0.5374771480804388,
+      "meanReward": 363.77574416916883,
+      "rewardPerWave": 87.5255069536381,
+      "meanKills": 47.475,
+      "meanEpisodeWaves": 3.025,
+      "bestEpisodeWaves": 7,
+      "truncatedShare": 0,
+      "entropy": 3.586042334272603,
+      "policyLoss": -0.004237387035202514,
+      "valueLoss": 29.319441082276757,
+      "evaluation": {
+        "kills": 40.25,
+        "waves": 2.75,
+        "seconds": 126.63749999999891,
+        "reward": 280.9350384884888,
+        "runs": [
+          {
+            "seed": 104729,
+            "kills": 46,
+            "waves": 3,
+            "seconds": 150.54999999999998,
+            "reward": 341.9765026026024
+          },
+          {
+            "seed": 130363,
+            "kills": 25,
+            "waves": 2,
+            "seconds": 89.54999999999706,
+            "reward": 147.43652472472505
+          },
+          {
+            "seed": 155921,
+            "kills": 60,
+            "waves": 4,
+            "seconds": 161.35000000000244,
+            "reward": 470.93053823823897
+          },
+          {
+            "seed": 196613,
+            "kills": 30,
+            "waves": 2,
+            "seconds": 105.09999999999617,
+            "reward": 163.3965883883887
+          }
+        ]
+      }
+    },
+    {
+      "iteration": 100,
+      "totalSteps": 134400,
+      "wavesCleared": 413,
+      "wavesAttempted": 707,
+      "bestWave": 7,
+      "holdRate": 0.5841584158415841,
+      "meanReward": 377.0540989852351,
+      "rewardPerWave": 75.76416786174268,
+      "meanKills": 47.55,
+      "meanEpisodeWaves": 2.925,
+      "bestEpisodeWaves": 7,
+      "truncatedShare": 0,
+      "entropy": 3.3780433325718557,
+      "policyLoss": -0.006344046925142603,
+      "valueLoss": 31.53317854657785,
+      "evaluation": {
+        "kills": 41.5,
+        "waves": 2.75,
+        "seconds": 133.1250000000003,
+        "reward": 278.35991393893914,
+        "runs": [
+          {
+            "seed": 104729,
+            "kills": 30,
+            "waves": 2,
+            "seconds": 107.34999999999604,
+            "reward": 146.50840710710764
+          },
+          {
+            "seed": 130363,
+            "kills": 30,
+            "waves": 2,
+            "seconds": 121.54999999999524,
+            "reward": 168.0171831831829
+          },
+          {
+            "seed": 155921,
+            "kills": 28,
+            "waves": 2,
+            "seconds": 94.89999999999675,
+            "reward": 152.64028908908944
+          },
+          {
+            "seed": 196613,
+            "kills": 78,
+            "waves": 5,
+            "seconds": 208.7000000000132,
+            "reward": 646.2737763763766
+          }
+        ]
+      }
+    },
+    {
+      "iteration": 120,
+      "totalSteps": 161280,
+      "wavesCleared": 529,
+      "wavesAttempted": 866,
+      "bestWave": 7,
+      "holdRate": 0.6108545034642032,
+      "meanReward": 333.82090223723725,
+      "rewardPerWave": 71.39695825060777,
+      "meanKills": 44.175,
+      "meanEpisodeWaves": 2.7,
+      "bestEpisodeWaves": 7,
+      "truncatedShare": 0,
+      "entropy": 3.478907657918959,
+      "policyLoss": -0.004132941155245055,
+      "valueLoss": 46.83739453768602,
+      "evaluation": {
+        "kills": 69,
+        "waves": 4.25,
+        "seconds": 182.42500000001058,
+        "reward": 626.1252448198185,
+        "runs": [
+          {
+            "seed": 104729,
+            "kills": 28,
+            "waves": 2,
+            "seconds": 101.24999999999639,
+            "reward": 152.52970750750725
+          },
+          {
+            "seed": 130363,
+            "kills": 97,
+            "waves": 6,
+            "seconds": 226.05000000001715,
+            "reward": 976.8324230230228
+          },
+          {
+            "seed": 155921,
+            "kills": 123,
+            "waves": 7,
+            "seconds": 294.5500000000327,
+            "reward": 1217.1836015014967
+          },
+          {
+            "seed": 196613,
+            "kills": 28,
+            "waves": 2,
+            "seconds": 107.84999999999602,
+            "reward": 157.95524724724737
+          }
+        ]
+      }
+    },
+    {
+      "iteration": 140,
+      "totalSteps": 188160,
+      "wavesCleared": 644,
+      "wavesAttempted": 1015,
+      "bestWave": 9,
+      "holdRate": 0.6344827586206897,
+      "meanReward": 426.8757569594592,
+      "rewardPerWave": 80.99361628912342,
+      "meanKills": 52.4,
+      "meanEpisodeWaves": 3.225,
+      "bestEpisodeWaves": 9,
+      "truncatedShare": 0,
+      "entropy": 3.2584936514359204,
+      "policyLoss": 0.0005790233168025113,
+      "valueLoss": 33.983656741233624,
+      "evaluation": {
+        "kills": 74.75,
+        "waves": 4.5,
+        "seconds": 189.50000000001103,
+        "reward": 711.7748552802818,
+        "runs": [
+          {
+            "seed": 104729,
+            "kills": 29,
+            "waves": 2,
+            "seconds": 101.59999999999637,
+            "reward": 150.22770370370347
+          },
+          {
+            "seed": 130363,
+            "kills": 83,
+            "waves": 5,
+            "seconds": 203.75000000001208,
+            "reward": 830.3400264764755
+          },
+          {
+            "seed": 155921,
+            "kills": 144,
+            "waves": 8,
+            "seconds": 329.50000000004064,
+            "reward": 1528.3908972472545
+          },
+          {
+            "seed": 196613,
+            "kills": 43,
+            "waves": 3,
+            "seconds": 123.14999999999515,
+            "reward": 338.14079369369375
+          }
+        ]
+      }
+    },
+    {
+      "iteration": 160,
+      "totalSteps": 215040,
+      "wavesCleared": 766,
+      "wavesAttempted": 1170,
+      "bestWave": 9,
+      "holdRate": 0.6547008547008547,
+      "meanReward": 479.6549821246252,
+      "rewardPerWave": 93.22545537542706,
+      "meanKills": 57.45,
+      "meanEpisodeWaves": 3.45,
+      "bestEpisodeWaves": 9,
+      "truncatedShare": 0,
+      "entropy": 2.973251277318399,
+      "policyLoss": 0.0020487452565767597,
+      "valueLoss": 59.54030789084587,
+      "evaluation": {
+        "kills": 63,
+        "waves": 4,
+        "seconds": 168.61250000000595,
+        "reward": 516.5726273148141,
+        "runs": [
+          {
+            "seed": 104729,
+            "kills": 32,
+            "waves": 2,
+            "seconds": 101.94999999999635,
+            "reward": 178.75686766766663
+          },
+          {
+            "seed": 130363,
+            "kills": 82,
+            "waves": 5,
+            "seconds": 204.7500000000123,
+            "reward": 702.6871248248236
+          },
+          {
+            "seed": 155921,
+            "kills": 78,
+            "waves": 5,
+            "seconds": 194.25000000000992,
+            "reward": 707.2242881881881
+          },
+          {
+            "seed": 196613,
+            "kills": 60,
+            "waves": 4,
+            "seconds": 173.5000000000052,
+            "reward": 477.6222285785778
+          }
+        ]
+      }
+    }
+  ]
+}
